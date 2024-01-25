@@ -10,15 +10,14 @@ class FeedViewModel {
     var feedItems: [FeedItem] = []
     let feedDataSubject = PassthroughSubject<Void, PAServiceError>()
     private let feedApiManager = FeedAPIManager()
-    private var isLoadingMoreFeeds = false
+    var isLoadingMoreData = false
 
     func getFeedItems() {
-        guard !isLoadingMoreFeeds else { return }
-        isLoadingMoreFeeds = true
+        guard !isLoadingMoreData else { return }
+        isLoadingMoreData = true
 
         feedApiManager.getFeedData { [weak self] result in
             guard let self = self else { return }
-            self.isLoadingMoreFeeds = false
             switch result {
             case let .success(response):
                 let feedItems = self.generateFeedItems(from: response)
@@ -29,6 +28,9 @@ class FeedViewModel {
             case let .failure(error):
                 let customError = PAServiceError.mapError(error)
                 self.feedDataSubject.send(completion: .failure(customError))
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.isLoadingMoreData = false
             }
         }
     }

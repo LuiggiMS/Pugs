@@ -79,7 +79,7 @@ extension FeedViewController: UIScrollViewDelegate {
         let contentHeight = scrollView.contentSize.height
         let height = scrollView.frame.size.height
 
-        guard feedViewModel.feedItems.count > 0 else {
+        guard feedViewModel.feedItems.count > 0, !feedViewModel.isLoadingMoreData else {
             return
         }
 
