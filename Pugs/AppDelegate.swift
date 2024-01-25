@@ -2,8 +2,6 @@
 //  AppDelegate.swift
 //  Pugs
 //
-//  Created by Daniel Minaya on 25/01/24.
-//
 
 import UIKit
 

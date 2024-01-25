@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FeedItemCell" id="gTV-IL-0wX" customClass="FeedItemCell" customModule="Pugs" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="353" height="250"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="353" height="250"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cTy-wG-gmj">
+                        <rect key="frame" x="0.0" y="0.0" width="353" height="250"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6jK-cN-hKb">
+                                <rect key="frame" x="0.0" y="0.0" width="353" height="200"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tU6-dB-kXP">
+                                <rect key="frame" x="13" y="205" width="35" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system">
+                                    <color key="baseForegroundColor" systemColor="tintColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapLikeButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="4o1-sz-qiV"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="000 likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g6Z-vb-LVO">
+                                <rect key="frame" x="20" y="232" width="62" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6jK-cN-hKb" firstAttribute="leading" secondItem="cTy-wG-gmj" secondAttribute="leading" id="GzE-0M-ydF"/>
+                            <constraint firstItem="6jK-cN-hKb" firstAttribute="top" secondItem="cTy-wG-gmj" secondAttribute="top" id="VvH-g1-3jW"/>
+                            <constraint firstAttribute="bottom" secondItem="6jK-cN-hKb" secondAttribute="bottom" constant="50" id="qdy-Ip-9y8"/>
+                            <constraint firstAttribute="trailing" secondItem="6jK-cN-hKb" secondAttribute="trailing" id="wXH-Wj-Fl8"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="cTy-wG-gmj" secondAttribute="bottom" id="0gz-39-4Kb"/>
+                <constraint firstItem="cTy-wG-gmj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="glz-j3-vkk"/>
+                <constraint firstAttribute="trailing" secondItem="cTy-wG-gmj" secondAttribute="trailing" id="kp2-Mu-Qc0"/>
+                <constraint firstItem="cTy-wG-gmj" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="lk6-rn-CKo"/>
+            </constraints>
+            <size key="customSize" width="353" height="176"/>
+            <connections>
+                <outlet property="likeButton" destination="tU6-dB-kXP" id="D0O-CZ-73c"/>
+                <outlet property="likesCountLbl" destination="g6Z-vb-LVO" id="XnZ-Zz-N6Y"/>
+                <outlet property="pubImg" destination="6jK-cN-hKb" id="UxM-z5-QX7"/>
+            </connections>
+            <point key="canvasLocation" x="232.82442748091603" y="26.760563380281692"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="heart" catalog="system" width="128" height="107"/>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

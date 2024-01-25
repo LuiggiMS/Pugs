@@ -16,6 +16,19 @@
 		65C80E632B62D1A30071931A /* PugsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C80E622B62D1A30071931A /* PugsTests.swift */; };
 		65C80E6D2B62D1A30071931A /* PugsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C80E6C2B62D1A30071931A /* PugsUITests.swift */; };
 		65C80E6F2B62D1A30071931A /* PugsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C80E6E2B62D1A30071931A /* PugsUITestsLaunchTests.swift */; };
+		65C80E7D2B62DB800071931A /* FeedApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C80E7C2B62DB800071931A /* FeedApiManager.swift */; };
+		65C80E822B62DBA40071931A /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C80E812B62DBA40071931A /* FeedItem.swift */; };
+		65C80E842B62DBB10071931A /* PugResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C80E832B62DBB10071931A /* PugResponse.swift */; };
+		65C80E862B62DBCB0071931A /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C80E852B62DBCB0071931A /* FeedViewModel.swift */; };
+		65C80E892B62DC2B0071931A /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C80E882B62DC2B0071931A /* Constant.swift */; };
+		65C80E8B2B62DC510071931A /* PAServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C80E8A2B62DC510071931A /* PAServiceError.swift */; };
+		65C80E8E2B62DC730071931A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 65C80E8D2B62DC730071931A /* Alamofire */; };
+		65C80E912B62DCA70071931A /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C80E8F2B62DCA70071931A /* FeedViewController.swift */; };
+		65C80E922B62DCA70071931A /* FeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65C80E902B62DCA70071931A /* FeedViewController.xib */; };
+		65C80E962B62DCF80071931A /* FeedItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C80E942B62DCF70071931A /* FeedItemCell.swift */; };
+		65C80E972B62DCF80071931A /* FeedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65C80E952B62DCF70071931A /* FeedItemCell.xib */; };
+		65C80E9B2B62DF060071931A /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 65C80E9A2B62DF060071931A /* Nuke */; };
+		65C80E9D2B62DF060071931A /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 65C80E9C2B62DF060071931A /* NukeExtensions */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +62,16 @@
 		65C80E682B62D1A30071931A /* PugsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PugsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65C80E6C2B62D1A30071931A /* PugsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PugsUITests.swift; sourceTree = "<group>"; };
 		65C80E6E2B62D1A30071931A /* PugsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PugsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		65C80E7C2B62DB800071931A /* FeedApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedApiManager.swift; sourceTree = "<group>"; };
+		65C80E812B62DBA40071931A /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
+		65C80E832B62DBB10071931A /* PugResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PugResponse.swift; sourceTree = "<group>"; };
+		65C80E852B62DBCB0071931A /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		65C80E882B62DC2B0071931A /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		65C80E8A2B62DC510071931A /* PAServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PAServiceError.swift; sourceTree = "<group>"; };
+		65C80E8F2B62DCA70071931A /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		65C80E902B62DCA70071931A /* FeedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedViewController.xib; sourceTree = "<group>"; };
+		65C80E942B62DCF70071931A /* FeedItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedItemCell.swift; sourceTree = "<group>"; };
+		65C80E952B62DCF70071931A /* FeedItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedItemCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +79,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65C80E8E2B62DC730071931A /* Alamofire in Frameworks */,
+				65C80E9B2B62DF060071931A /* Nuke in Frameworks */,
+				65C80E9D2B62DF060071931A /* NukeExtensions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,8 +127,10 @@
 			children = (
 				65C80E4B2B62D1A10071931A /* AppDelegate.swift */,
 				65C80E4D2B62D1A10071931A /* SceneDelegate.swift */,
-				65C80E4F2B62D1A10071931A /* ViewController.swift */,
+				65C80E872B62DC150071931A /* Common */,
+				65C80E7B2B62DB470071931A /* Feed */,
 				65C80E512B62D1A10071931A /* Main.storyboard */,
+				65C80E4F2B62D1A10071931A /* ViewController.swift */,
 				65C80E542B62D1A30071931A /* Assets.xcassets */,
 				65C80E562B62D1A30071931A /* LaunchScreen.storyboard */,
 				65C80E592B62D1A30071931A /* Info.plist */,
@@ -127,6 +155,62 @@
 			path = PugsUITests;
 			sourceTree = "<group>";
 		};
+		65C80E7B2B62DB470071931A /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				65C80E7C2B62DB800071931A /* FeedApiManager.swift */,
+				65C80E802B62DB8E0071931A /* Model */,
+				65C80E7F2B62DB880071931A /* ViewModel */,
+				65C80E7E2B62DB830071931A /* View */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		65C80E7E2B62DB830071931A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				65C80E932B62DCDC0071931A /* FeedItemCell */,
+				65C80E8F2B62DCA70071931A /* FeedViewController.swift */,
+				65C80E902B62DCA70071931A /* FeedViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		65C80E7F2B62DB880071931A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				65C80E852B62DBCB0071931A /* FeedViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		65C80E802B62DB8E0071931A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				65C80E812B62DBA40071931A /* FeedItem.swift */,
+				65C80E832B62DBB10071931A /* PugResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		65C80E872B62DC150071931A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				65C80E882B62DC2B0071931A /* Constant.swift */,
+				65C80E8A2B62DC510071931A /* PAServiceError.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		65C80E932B62DCDC0071931A /* FeedItemCell */ = {
+			isa = PBXGroup;
+			children = (
+				65C80E942B62DCF70071931A /* FeedItemCell.swift */,
+				65C80E952B62DCF70071931A /* FeedItemCell.xib */,
+			);
+			path = FeedItemCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +227,11 @@
 			dependencies = (
 			);
 			name = Pugs;
+			packageProductDependencies = (
+				65C80E8D2B62DC730071931A /* Alamofire */,
+				65C80E9A2B62DF060071931A /* Nuke */,
+				65C80E9C2B62DF060071931A /* NukeExtensions */,
+			);
 			productName = Pugs;
 			productReference = 65C80E482B62D1A10071931A /* Pugs.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +304,10 @@
 				Base,
 			);
 			mainGroup = 65C80E3F2B62D1A10071931A;
+			packageReferences = (
+				65C80E8C2B62DC730071931A /* XCRemoteSwiftPackageReference "Alamofire" */,
+				65C80E992B62DF060071931A /* XCRemoteSwiftPackageReference "Nuke" */,
+			);
 			productRefGroup = 65C80E492B62D1A10071931A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -231,8 +324,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65C80E972B62DCF80071931A /* FeedItemCell.xib in Resources */,
 				65C80E582B62D1A30071931A /* LaunchScreen.storyboard in Resources */,
 				65C80E552B62D1A30071931A /* Assets.xcassets in Resources */,
+				65C80E922B62DCA70071931A /* FeedViewController.xib in Resources */,
 				65C80E532B62D1A10071931A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,9 +353,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65C80E862B62DBCB0071931A /* FeedViewModel.swift in Sources */,
+				65C80E7D2B62DB800071931A /* FeedApiManager.swift in Sources */,
+				65C80E912B62DCA70071931A /* FeedViewController.swift in Sources */,
+				65C80E8B2B62DC510071931A /* PAServiceError.swift in Sources */,
 				65C80E502B62D1A10071931A /* ViewController.swift in Sources */,
+				65C80E962B62DCF80071931A /* FeedItemCell.swift in Sources */,
+				65C80E892B62DC2B0071931A /* Constant.swift in Sources */,
 				65C80E4C2B62D1A10071931A /* AppDelegate.swift in Sources */,
+				65C80E822B62DBA40071931A /* FeedItem.swift in Sources */,
 				65C80E4E2B62D1A10071931A /* SceneDelegate.swift in Sources */,
+				65C80E842B62DBB10071931A /* PugResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,6 +710,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		65C80E8C2B62DC730071931A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.1;
+			};
+		};
+		65C80E992B62DF060071931A /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		65C80E8D2B62DC730071931A /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 65C80E8C2B62DC730071931A /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		65C80E9A2B62DF060071931A /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 65C80E992B62DF060071931A /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+		65C80E9C2B62DF060071931A /* NukeExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 65C80E992B62DF060071931A /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeExtensions;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 65C80E402B62D1A10071931A /* Project object */;
 }
