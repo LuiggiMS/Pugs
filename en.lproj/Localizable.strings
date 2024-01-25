@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  Pugs
+  
+*/
+
+// FeedViewController
+"FeedTitle" = "Pugs";
+"FeedPostLike" = "Likes";
+
+// SettingsViewController

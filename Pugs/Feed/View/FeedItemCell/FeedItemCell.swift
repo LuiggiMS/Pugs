@@ -25,7 +25,7 @@ class FeedItemCell: UICollectionViewCell {
     func configure(feedItem: FeedItem, index: Int) {
         itemIndex = index
         self.feedItem = feedItem
-        likesCountLbl.text = "\(feedItem.likedCount) Likes"
+        likesCountLbl.text = "\(feedItem.likedCount) \(Localized.key("FeedPostLike"))"
         NukeExtensions.loadImage(with: URL(string: feedItem.imageUrl), into: pubImg)
         updateLikeButtonAppearance()
     }

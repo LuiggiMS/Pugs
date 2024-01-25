@@ -13,7 +13,7 @@ class FeedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Pugs"
+        title = Localized.key("FeedTitle")
 
         setupCollectionView()
         setupHandlerForFeedDataSubject()
