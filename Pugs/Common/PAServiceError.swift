@@ -6,10 +6,23 @@
 import Alamofire
 import Foundation
 
-enum PAServiceError: Error {
+enum PAServiceError: Error, Equatable {
     case noInternetConnection
     case requestFailed(Int)
     case other(Error)
+    
+    static func == (lhs: PAServiceError, rhs: PAServiceError) -> Bool {
+        switch (lhs, rhs) {
+        case (.noInternetConnection, .noInternetConnection):
+            return true
+        case let (.requestFailed(lhsCode), .requestFailed(rhsCode)):
+            return lhsCode == rhsCode
+        case let (.other(lhsError), .other(rhsError)):
+            return "\(lhsError)" == "\(rhsError)"
+        default:
+            return false
+        }
+    }
 
     static func mapError(_ error: Error) -> PAServiceError {
         if let networkError = error as? AFError {

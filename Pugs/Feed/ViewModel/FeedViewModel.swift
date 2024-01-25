@@ -9,7 +9,7 @@ import Foundation
 class FeedViewModel {
     var feedItems: [FeedItem] = []
     let feedDataSubject = PassthroughSubject<Void, PAServiceError>()
-    private let feedApiManager = FeedAPIManager()
+    var feedApiManager = FeedAPIManager()
     var isLoadingMoreData = false
 
     func getFeedItems() {

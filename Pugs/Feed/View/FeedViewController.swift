@@ -39,9 +39,10 @@ class FeedViewController: UIViewController {
     func setupCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
-
-        let nibFeedItemCell = UINib(nibName: "FeedItemCell", bundle: nil)
-        collectionView.register(nibFeedItemCell, forCellWithReuseIdentifier: "FeedItemCell")
+        
+        let identifier = String(describing: FeedItemCell.self)
+        let nibFeedItemCell = UINib(nibName: identifier, bundle: nil)
+        collectionView.register(nibFeedItemCell, forCellWithReuseIdentifier: identifier)
 
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.itemSize = CGSize(width: collectionView.bounds.width, height: 200)
@@ -56,7 +57,8 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FeedItemCell", for: indexPath) as? FeedItemCell else {
+        let identifier = String(describing: FeedItemCell.self)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? FeedItemCell else {
             fatalError("Unable to dequeue FeedItemCell")
         }
 
