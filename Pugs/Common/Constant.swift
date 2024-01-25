@@ -5,8 +5,6 @@
 
 import Foundation
 
-struct Constant {
-    
+enum Constant {
     static let baseURL = "https://dog.ceo"
-
 }

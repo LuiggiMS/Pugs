@@ -3,31 +3,30 @@
 //  Pugs
 //
 
-import UIKit
 import Combine
+import UIKit
 
 class FeedViewController: UIViewController {
-    
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet var collectionView: UICollectionView!
     let feedViewModel = FeedViewModel()
     var cancellables: Set<AnyCancellable> = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Pugs"
-        
+
         setupCollectionView()
-        setupHandlerForFeedDataSubject()  
+        setupHandlerForFeedDataSubject()
         feedViewModel.getFeedItems()
     }
-    
-    func setupHandlerForFeedDataSubject() {        
+
+    func setupHandlerForFeedDataSubject() {
         feedViewModel.feedDataSubject
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 guard let self = self else { return }
                 switch completion {
-                case .failure(let error):
+                case let .failure(error):
                     debugPrint("Error: \(error)")
                 case .finished: break
                 }
@@ -36,25 +35,23 @@ class FeedViewController: UIViewController {
             })
             .store(in: &cancellables)
     }
-    
+
     func setupCollectionView() {
-        self.collectionView.dataSource = self
-        self.collectionView.delegate = self
-        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+
         let nibFeedItemCell = UINib(nibName: "FeedItemCell", bundle: nil)
         collectionView.register(nibFeedItemCell, forCellWithReuseIdentifier: "FeedItemCell")
-        
+
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.itemSize = CGSize(width: collectionView.bounds.width, height: 200) 
+            flowLayout.itemSize = CGSize(width: collectionView.bounds.width, height: 200)
             flowLayout.minimumInteritemSpacing = 0
         }
     }
-
 }
 
 extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-        
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         return feedViewModel.feedItems.count
     }
 
@@ -68,15 +65,12 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
         cell.delegate = self
         return cell
     }
-
 }
 
-
 extension FeedViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout _: UICollectionViewLayout, sizeForItemAt _: IndexPath) -> CGSize {
         return CGSize(width: collectionView.bounds.width, height: 250)
     }
-
 }
 
 extension FeedViewController: UIScrollViewDelegate {
@@ -84,11 +78,11 @@ extension FeedViewController: UIScrollViewDelegate {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         let height = scrollView.frame.size.height
-        
+
         guard feedViewModel.feedItems.count > 0 else {
             return
         }
-        
+
         if offsetY > contentHeight - height {
             feedViewModel.getFeedItems()
         }

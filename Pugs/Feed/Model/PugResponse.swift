@@ -10,4 +10,3 @@ struct FeedItem {
     var liked: Bool
     var likedCount: Int
 }
-

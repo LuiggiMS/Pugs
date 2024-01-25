@@ -3,8 +3,8 @@
 //  Pugs
 //
 
-import Foundation
 import Alamofire
+import Foundation
 
 enum PAServiceError: Error {
     case noInternetConnection
@@ -14,7 +14,7 @@ enum PAServiceError: Error {
     static func mapError(_ error: Error) -> PAServiceError {
         if let networkError = error as? AFError {
             switch networkError {
-            case .sessionTaskFailed(let error):
+            case let .sessionTaskFailed(error):
                 if let urlError = error as? URLError, urlError.code == .notConnectedToInternet {
                     return .noInternetConnection
                 } else {

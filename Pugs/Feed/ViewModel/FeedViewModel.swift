@@ -3,10 +3,10 @@
 //  Pugs
 //
 
-import Foundation
 import Combine
+import Foundation
+
 class FeedViewModel {
-    
     var feedItems: [FeedItem] = []
     let feedDataSubject = PassthroughSubject<Void, PAServiceError>()
     private let feedApiManager = FeedAPIManager()
@@ -15,24 +15,24 @@ class FeedViewModel {
     func getFeedItems() {
         guard !isLoadingMoreFeeds else { return }
         isLoadingMoreFeeds = true
-        
+
         feedApiManager.getFeedData { [weak self] result in
             guard let self = self else { return }
             self.isLoadingMoreFeeds = false
             switch result {
-            case .success(let response):
+            case let .success(response):
                 let feedItems = self.generateFeedItems(from: response)
                 DispatchQueue.main.async {
                     self.feedItems.append(contentsOf: feedItems)
                     self.feedDataSubject.send()
                 }
-            case .failure(let error):
+            case let .failure(error):
                 let customError = PAServiceError.mapError(error)
                 self.feedDataSubject.send(completion: .failure(customError))
             }
         }
     }
-    
+
     func toggleLike(index: Int) {
         guard index >= 0, index < feedItems.count else {
             return
@@ -49,12 +49,11 @@ class FeedViewModel {
 
         feedItems[index] = feedItem
     }
-        
+
     private func generateFeedItems(from pugResponse: PugResponse) -> [FeedItem] {
         return pugResponse.message.map { imageUrl in
-            let randomLikedCount = Int.random(in: 10...100)
+            let randomLikedCount = Int.random(in: 10 ... 100)
             return FeedItem(imageUrl: imageUrl, liked: false, likedCount: randomLikedCount)
         }
     }
-    
 }

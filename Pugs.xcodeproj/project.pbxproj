@@ -29,6 +29,7 @@
 		65C80E972B62DCF80071931A /* FeedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65C80E952B62DCF70071931A /* FeedItemCell.xib */; };
 		65C80E9B2B62DF060071931A /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 65C80E9A2B62DF060071931A /* Nuke */; };
 		65C80E9D2B62DF060071931A /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 65C80E9C2B62DF060071931A /* NukeExtensions */; };
+		65C80EA02B62E5FF0071931A /* SwiftFormat in Frameworks */ = {isa = PBXBuildFile; productRef = 65C80E9F2B62E5FF0071931A /* SwiftFormat */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65C80E8E2B62DC730071931A /* Alamofire in Frameworks */,
+				65C80EA02B62E5FF0071931A /* SwiftFormat in Frameworks */,
 				65C80E9B2B62DF060071931A /* Nuke in Frameworks */,
 				65C80E9D2B62DF060071931A /* NukeExtensions in Frameworks */,
 			);
@@ -231,6 +233,7 @@
 				65C80E8D2B62DC730071931A /* Alamofire */,
 				65C80E9A2B62DF060071931A /* Nuke */,
 				65C80E9C2B62DF060071931A /* NukeExtensions */,
+				65C80E9F2B62E5FF0071931A /* SwiftFormat */,
 			);
 			productName = Pugs;
 			productReference = 65C80E482B62D1A10071931A /* Pugs.app */;
@@ -307,6 +310,7 @@
 			packageReferences = (
 				65C80E8C2B62DC730071931A /* XCRemoteSwiftPackageReference "Alamofire" */,
 				65C80E992B62DF060071931A /* XCRemoteSwiftPackageReference "Nuke" */,
+				65C80E9E2B62E5FF0071931A /* XCRemoteSwiftPackageReference "SwiftFormat" */,
 			);
 			productRefGroup = 65C80E492B62D1A10071931A /* Products */;
 			projectDirPath = "";
@@ -728,6 +732,14 @@
 				minimumVersion = 12.3.0;
 			};
 		};
+		65C80E9E2B62E5FF0071931A /* XCRemoteSwiftPackageReference "SwiftFormat" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nicklockwood/SwiftFormat";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.53.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -745,6 +757,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 65C80E992B62DF060071931A /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = NukeExtensions;
+		};
+		65C80E9F2B62E5FF0071931A /* SwiftFormat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 65C80E9E2B62E5FF0071931A /* XCRemoteSwiftPackageReference "SwiftFormat" */;
+			productName = SwiftFormat;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
