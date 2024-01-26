@@ -18,6 +18,7 @@
 		6524F3C22B640F81001D804C /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 6524F3C12B640F81001D804C /* Reachability */; };
 		6524F3C62B6410AF001D804C /* NoInternetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6524F3C42B6410AF001D804C /* NoInternetView.xib */; };
 		6524F3C72B6410AF001D804C /* NoInternetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6524F3C52B6410AF001D804C /* NoInternetView.swift */; };
+		6524F3CA2B6420AC001D804C /* SnackBar in Frameworks */ = {isa = PBXBuildFile; productRef = 6524F3C92B6420AC001D804C /* SnackBar */; };
 		65C80E4C2B62D1A10071931A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C80E4B2B62D1A10071931A /* AppDelegate.swift */; };
 		65C80E4E2B62D1A10071931A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C80E4D2B62D1A10071931A /* SceneDelegate.swift */; };
 		65C80E552B62D1A30071931A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65C80E542B62D1A30071931A /* Assets.xcassets */; };
@@ -99,6 +100,7 @@
 			files = (
 				65C80E8E2B62DC730071931A /* Alamofire in Frameworks */,
 				6524F3C22B640F81001D804C /* Reachability in Frameworks */,
+				6524F3CA2B6420AC001D804C /* SnackBar in Frameworks */,
 				65C80EA02B62E5FF0071931A /* SwiftFormat in Frameworks */,
 				6524F3B52B631DB1001D804C /* FirebaseCrashlytics in Frameworks */,
 				65C80E9B2B62DF060071931A /* Nuke in Frameworks */,
@@ -278,6 +280,7 @@
 				65C80E9F2B62E5FF0071931A /* SwiftFormat */,
 				6524F3B42B631DB1001D804C /* FirebaseCrashlytics */,
 				6524F3C12B640F81001D804C /* Reachability */,
+				6524F3C92B6420AC001D804C /* SnackBar */,
 			);
 			productName = Pugs;
 			productReference = 65C80E482B62D1A10071931A /* Pugs.app */;
@@ -358,6 +361,7 @@
 				65C80E9E2B62E5FF0071931A /* XCRemoteSwiftPackageReference "SwiftFormat" */,
 				6524F3B32B631DB1001D804C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				6524F3C02B640F81001D804C /* XCRemoteSwiftPackageReference "Reachability" */,
+				6524F3C82B6420AC001D804C /* XCRemoteSwiftPackageReference "SnackBar" */,
 			);
 			productRefGroup = 65C80E492B62D1A10071931A /* Products */;
 			projectDirPath = "";
@@ -787,6 +791,14 @@
 				kind = branch;
 			};
 		};
+		6524F3C82B6420AC001D804C /* XCRemoteSwiftPackageReference "SnackBar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ahmedAlmasri/SnackBar.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.2;
+			};
+		};
 		65C80E8C2B62DC730071931A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -823,6 +835,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6524F3C02B640F81001D804C /* XCRemoteSwiftPackageReference "Reachability" */;
 			productName = Reachability;
+		};
+		6524F3C92B6420AC001D804C /* SnackBar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6524F3C82B6420AC001D804C /* XCRemoteSwiftPackageReference "SnackBar" */;
+			productName = SnackBar;
 		};
 		65C80E8D2B62DC730071931A /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

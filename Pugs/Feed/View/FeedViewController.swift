@@ -5,6 +5,7 @@
 
 import Combine
 import UIKit
+import SnackBar
 
 class FeedViewController: UIViewController {
     @IBOutlet var collectionView: UICollectionView!
@@ -18,13 +19,13 @@ class FeedViewController: UIViewController {
         
         setupCollectionView()
         setupHandlerForFeedDataSubject()
-        
+        setupNoInternetView()
+
         Util.shared.checkInternetConnection { [weak self] isConnected in
             guard let self = self else { return }
             if isConnected {
                 self.feedViewModel.getFeedItems()
             } else {
-                self.setupNoInternetView()
                 self.showNoInternetConectionView(state: true)
             }
         }
@@ -33,17 +34,16 @@ class FeedViewController: UIViewController {
     func setupHandlerForFeedDataSubject() {
         feedViewModel.feedDataSubject
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { [weak self] completion in
+            .sink { [weak self] result in
                 guard let self = self else { return }
-                switch completion {
+                switch result {
+                case .success:
+                    self.showNoInternetConectionView(state: false)
+                    self.collectionView.reloadData()
                 case let .failure(error):
-                    debugPrint("Error: \(error)")
-                case .finished: break
+                    self.handleError(error: error)
                 }
-            }, receiveValue: {
-                self.showNoInternetConectionView(state: false)
-                self.collectionView.reloadData()
-            })
+            }
             .store(in: &cancellables)
     }
 
@@ -75,6 +75,17 @@ class FeedViewController: UIViewController {
         navigationController?.navigationBar.isHidden = state
         noInternetView.isHidden = !state
         collectionView.isHidden = state
+    }
+    
+    func handleError(error: PAServiceError) {
+        switch error {
+        case .noInternetConnection:
+            SnackBar.make(in: self.view, message: "The Internet connection appears to be offline.", duration: .lengthShort).show()
+        default:
+            let errorMessage = "An unexpected error occurred. Please try again later."
+            SnackBar.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            debugPrint("Error: \(error)")
+        }
     }
 }
 
