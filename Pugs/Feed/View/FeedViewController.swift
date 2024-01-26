@@ -5,34 +5,45 @@
 
 import Combine
 import UIKit
+import SnackBar
 
 class FeedViewController: UIViewController {
     @IBOutlet var collectionView: UICollectionView!
+    var noInternetView: NoInternetView!
     let feedViewModel = FeedViewModel()
     var cancellables: Set<AnyCancellable> = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = Localized.key("FeedTitle")
-
+        
         setupCollectionView()
         setupHandlerForFeedDataSubject()
-        feedViewModel.getFeedItems()
+        setupNoInternetView()
+
+        Util.shared.checkInternetConnection { [weak self] isConnected in
+            guard let self = self else { return }
+            if isConnected {
+                self.feedViewModel.getFeedItems()
+            } else {
+                self.showNoInternetConectionView(state: true)
+            }
+        }
     }
 
     func setupHandlerForFeedDataSubject() {
         feedViewModel.feedDataSubject
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { [weak self] completion in
+            .sink { [weak self] result in
                 guard let self = self else { return }
-                switch completion {
+                switch result {
+                case .success:
+                    self.showNoInternetConectionView(state: false)
+                    self.collectionView.reloadData()
                 case let .failure(error):
-                    debugPrint("Error: \(error)")
-                case .finished: break
+                    self.handleError(error: error)
                 }
-            }, receiveValue: {
-                self.collectionView.reloadData()
-            })
+            }
             .store(in: &cancellables)
     }
 
@@ -47,6 +58,33 @@ class FeedViewController: UIViewController {
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.itemSize = CGSize(width: collectionView.bounds.width, height: 200)
             flowLayout.minimumInteritemSpacing = 0
+        }
+    }
+    
+    func setupNoInternetView() {
+        let nibNamed = String(describing: NoInternetView.self)
+        noInternetView = Bundle.main.loadNibNamed(nibNamed, owner: self, options: nil)?.first as? NoInternetView
+        noInternetView.frame = view.bounds
+        noInternetView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(noInternetView)
+        noInternetView.delegate = self
+        noInternetView.isHidden = true
+    }
+    
+    func showNoInternetConectionView(state: Bool) {
+        navigationController?.navigationBar.isHidden = state
+        noInternetView.isHidden = !state
+        collectionView.isHidden = state
+    }
+    
+    func handleError(error: PAServiceError) {
+        switch error {
+        case .noInternetConnection:
+            SnackBar.make(in: self.view, message: "The Internet connection appears to be offline.", duration: .lengthShort).show()
+        default:
+            let errorMessage = "An unexpected error occurred. Please try again later."
+            SnackBar.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            debugPrint("Error: \(error)")
         }
     }
 }
@@ -95,5 +133,13 @@ extension FeedViewController: FeedItemProtocol {
     func didTapLike(atIndex index: Int) {
         feedViewModel.toggleLike(index: index)
         collectionView.reloadData()
+    }
+}
+
+extension FeedViewController: NoInternetViewDelegate {
+    func didSelectReload() {
+        DispatchQueue.main.async {
+            self.feedViewModel.getFeedItems()
+        }
     }
 }
