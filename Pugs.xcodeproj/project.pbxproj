@@ -14,6 +14,10 @@
 		6524F3B22B631B4F001D804C /* MockFeedAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6524F3B12B631B4F001D804C /* MockFeedAPIManager.swift */; };
 		6524F3B52B631DB1001D804C /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6524F3B42B631DB1001D804C /* FirebaseCrashlytics */; };
 		6524F3BB2B631E8B001D804C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6524F3BA2B631E8B001D804C /* GoogleService-Info.plist */; };
+		6524F3BF2B640F53001D804C /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6524F3BE2B640F53001D804C /* Util.swift */; };
+		6524F3C22B640F81001D804C /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 6524F3C12B640F81001D804C /* Reachability */; };
+		6524F3C62B6410AF001D804C /* NoInternetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6524F3C42B6410AF001D804C /* NoInternetView.xib */; };
+		6524F3C72B6410AF001D804C /* NoInternetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6524F3C52B6410AF001D804C /* NoInternetView.swift */; };
 		65C80E4C2B62D1A10071931A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C80E4B2B62D1A10071931A /* AppDelegate.swift */; };
 		65C80E4E2B62D1A10071931A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C80E4D2B62D1A10071931A /* SceneDelegate.swift */; };
 		65C80E552B62D1A30071931A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65C80E542B62D1A30071931A /* Assets.xcassets */; };
@@ -62,6 +66,9 @@
 		6524F3AF2B6312DC001D804C /* PugResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PugResponse.json; sourceTree = "<group>"; };
 		6524F3B12B631B4F001D804C /* MockFeedAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFeedAPIManager.swift; sourceTree = "<group>"; };
 		6524F3BA2B631E8B001D804C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6524F3BE2B640F53001D804C /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		6524F3C42B6410AF001D804C /* NoInternetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoInternetView.xib; sourceTree = "<group>"; };
+		6524F3C52B6410AF001D804C /* NoInternetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoInternetView.swift; sourceTree = "<group>"; };
 		65C80E482B62D1A10071931A /* Pugs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pugs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65C80E4B2B62D1A10071931A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65C80E4D2B62D1A10071931A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +98,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65C80E8E2B62DC730071931A /* Alamofire in Frameworks */,
+				6524F3C22B640F81001D804C /* Reachability in Frameworks */,
 				65C80EA02B62E5FF0071931A /* SwiftFormat in Frameworks */,
 				6524F3B52B631DB1001D804C /* FirebaseCrashlytics in Frameworks */,
 				65C80E9B2B62DF060071931A /* Nuke in Frameworks */,
@@ -121,6 +129,15 @@
 				6524F3AF2B6312DC001D804C /* PugResponse.json */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		6524F3C32B64109D001D804C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6524F3C52B6410AF001D804C /* NoInternetView.swift */,
+				6524F3C42B6410AF001D804C /* NoInternetView.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		65C80E3F2B62D1A10071931A = {
@@ -220,9 +237,11 @@
 		65C80E872B62DC150071931A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				6524F3C32B64109D001D804C /* View */,
 				6524F3AA2B630532001D804C /* Localized.swift */,
 				65C80E882B62DC2B0071931A /* Constant.swift */,
 				65C80E8A2B62DC510071931A /* PAServiceError.swift */,
+				6524F3BE2B640F53001D804C /* Util.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -258,6 +277,7 @@
 				65C80E9C2B62DF060071931A /* NukeExtensions */,
 				65C80E9F2B62E5FF0071931A /* SwiftFormat */,
 				6524F3B42B631DB1001D804C /* FirebaseCrashlytics */,
+				6524F3C12B640F81001D804C /* Reachability */,
 			);
 			productName = Pugs;
 			productReference = 65C80E482B62D1A10071931A /* Pugs.app */;
@@ -337,6 +357,7 @@
 				65C80E992B62DF060071931A /* XCRemoteSwiftPackageReference "Nuke" */,
 				65C80E9E2B62E5FF0071931A /* XCRemoteSwiftPackageReference "SwiftFormat" */,
 				6524F3B32B631DB1001D804C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				6524F3C02B640F81001D804C /* XCRemoteSwiftPackageReference "Reachability" */,
 			);
 			productRefGroup = 65C80E492B62D1A10071931A /* Products */;
 			projectDirPath = "";
@@ -354,6 +375,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6524F3C62B6410AF001D804C /* NoInternetView.xib in Resources */,
 				65C80E972B62DCF80071931A /* FeedItemCell.xib in Resources */,
 				6524F3A62B63049D001D804C /* Localizable.strings in Resources */,
 				65C80E582B62D1A30071931A /* LaunchScreen.storyboard in Resources */,
@@ -386,12 +408,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				65C80E862B62DBCB0071931A /* FeedViewModel.swift in Sources */,
+				6524F3C72B6410AF001D804C /* NoInternetView.swift in Sources */,
 				65C80E7D2B62DB800071931A /* FeedApiManager.swift in Sources */,
 				65C80E912B62DCA70071931A /* FeedViewController.swift in Sources */,
 				65C80E8B2B62DC510071931A /* PAServiceError.swift in Sources */,
 				65C80E962B62DCF80071931A /* FeedItemCell.swift in Sources */,
 				65C80E892B62DC2B0071931A /* Constant.swift in Sources */,
 				6524F3AB2B630532001D804C /* Localized.swift in Sources */,
+				6524F3BF2B640F53001D804C /* Util.swift in Sources */,
 				65C80E4C2B62D1A10071931A /* AppDelegate.swift in Sources */,
 				65C80E822B62DBA40071931A /* FeedItem.swift in Sources */,
 				65C80E4E2B62D1A10071931A /* SceneDelegate.swift in Sources */,
@@ -755,6 +779,14 @@
 				minimumVersion = 10.20.0;
 			};
 		};
+		6524F3C02B640F81001D804C /* XCRemoteSwiftPackageReference "Reachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		65C80E8C2B62DC730071931A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -786,6 +818,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6524F3B32B631DB1001D804C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
+		};
+		6524F3C12B640F81001D804C /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6524F3C02B640F81001D804C /* XCRemoteSwiftPackageReference "Reachability" */;
+			productName = Reachability;
 		};
 		65C80E8D2B62DC730071931A /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

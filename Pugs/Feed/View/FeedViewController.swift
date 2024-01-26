@@ -8,16 +8,26 @@ import UIKit
 
 class FeedViewController: UIViewController {
     @IBOutlet var collectionView: UICollectionView!
+    var noInternetView: NoInternetView!
     let feedViewModel = FeedViewModel()
     var cancellables: Set<AnyCancellable> = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = Localized.key("FeedTitle")
-
+        
         setupCollectionView()
         setupHandlerForFeedDataSubject()
-        feedViewModel.getFeedItems()
+        
+        Util.shared.checkInternetConnection { [weak self] isConnected in
+            guard let self = self else { return }
+            if isConnected {
+                self.feedViewModel.getFeedItems()
+            } else {
+                self.setupNoInternetView()
+                self.showNoInternetConectionView(state: true)
+            }
+        }
     }
 
     func setupHandlerForFeedDataSubject() {
@@ -31,6 +41,7 @@ class FeedViewController: UIViewController {
                 case .finished: break
                 }
             }, receiveValue: {
+                self.showNoInternetConectionView(state: false)
                 self.collectionView.reloadData()
             })
             .store(in: &cancellables)
@@ -48,6 +59,22 @@ class FeedViewController: UIViewController {
             flowLayout.itemSize = CGSize(width: collectionView.bounds.width, height: 200)
             flowLayout.minimumInteritemSpacing = 0
         }
+    }
+    
+    func setupNoInternetView() {
+        let nibNamed = String(describing: NoInternetView.self)
+        noInternetView = Bundle.main.loadNibNamed(nibNamed, owner: self, options: nil)?.first as? NoInternetView
+        noInternetView.frame = view.bounds
+        noInternetView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(noInternetView)
+        noInternetView.delegate = self
+        noInternetView.isHidden = true
+    }
+    
+    func showNoInternetConectionView(state: Bool) {
+        navigationController?.navigationBar.isHidden = state
+        noInternetView.isHidden = !state
+        collectionView.isHidden = state
     }
 }
 
@@ -95,5 +122,13 @@ extension FeedViewController: FeedItemProtocol {
     func didTapLike(atIndex index: Int) {
         feedViewModel.toggleLike(index: index)
         collectionView.reloadData()
+    }
+}
+
+extension FeedViewController: NoInternetViewDelegate {
+    func didSelectReload() {
+        DispatchQueue.main.async {
+            self.feedViewModel.getFeedItems()
+        }
     }
 }
