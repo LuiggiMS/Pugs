@@ -59,6 +59,10 @@ class FeedViewController: UIViewController {
             flowLayout.itemSize = CGSize(width: collectionView.bounds.width, height: 200)
             flowLayout.minimumInteritemSpacing = 0
         }
+        
+        let loaderCellIdentifier = String(describing: LoadingCell.self)
+        let nibLoaderCell = UINib(nibName: loaderCellIdentifier, bundle: nil)
+        collectionView.register(nibLoaderCell, forCellWithReuseIdentifier: loaderCellIdentifier)
     }
     
     func setupNoInternetView() {
@@ -90,42 +94,62 @@ class FeedViewController: UIViewController {
 }
 
 extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-        return feedViewModel.feedItems.count
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
+    func collectionView(_: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return feedViewModel.feedItems.count
+        case 1:
+            return 1
+        default:
+            return 0
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let identifier = String(describing: FeedItemCell.self)
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? FeedItemCell else {
-            fatalError("Unable to dequeue FeedItemCell")
-        }
+        if indexPath.section == 0 {
+            let identifier = String(describing: FeedItemCell.self)
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? FeedItemCell else {
+                fatalError("Unable to dequeue FeedItemCell")
+            }
 
-        let feedItem = feedViewModel.feedItems[indexPath.item]
-        cell.configure(feedItem: feedItem, index: indexPath.row)
-        cell.delegate = self
-        return cell
+            let feedItem = feedViewModel.feedItems[indexPath.item]
+            cell.configure(feedItem: feedItem, index: indexPath.row)
+            cell.delegate = self
+            return cell
+        } else {
+            let loaderCellIdentifier = String(describing: LoadingCell.self)
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: loaderCellIdentifier, for: indexPath) as? LoadingCell else {
+                fatalError("Unable to dequeue FeedItemCell")
+            }
+            cell.activityIndicator.startAnimating()
+            return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == feedViewModel.feedItems.count - 1, !feedViewModel.isLoadingMoreData {
+            feedViewModel.getFeedItems()
+        }
     }
 }
 
 extension FeedViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout _: UICollectionViewLayout, sizeForItemAt _: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.width, height: 250)
-    }
-}
-
-extension FeedViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        let height = scrollView.frame.size.height
-
-        guard feedViewModel.feedItems.count > 0, !feedViewModel.isLoadingMoreData else {
-            return
+    func collectionView(_ collectionView: UICollectionView, layout _: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        var height: CGFloat
+        switch indexPath.section {
+        case 0:
+            height = 250
+        case 1:
+            height = 50
+        default:
+            height = 0
         }
-
-        if offsetY > contentHeight - height {
-            feedViewModel.getFeedItems()
-        }
+        return CGSize(width: collectionView.bounds.width, height: height)
     }
 }
 
