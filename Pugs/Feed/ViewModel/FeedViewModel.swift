@@ -8,7 +8,7 @@ import Foundation
 
 class FeedViewModel {
     var feedItems: [FeedItem] = []
-    let feedDataSubject = PassthroughSubject<Void, PAServiceError>()
+    let feedDataSubject = PassthroughSubject<Result<Bool, PAServiceError>, Never>()
     var feedApiManager = FeedAPIManager()
     var isLoadingMoreData = false
 
@@ -23,11 +23,11 @@ class FeedViewModel {
                 let feedItems = self.generateFeedItems(from: response)
                 DispatchQueue.main.async {
                     self.feedItems.append(contentsOf: feedItems)
-                    self.feedDataSubject.send()
+                    self.feedDataSubject.send(.success(true))
                 }
             case let .failure(error):
                 let customError = PAServiceError.mapError(error)
-                self.feedDataSubject.send(completion: .failure(customError))
+                self.feedDataSubject.send(.failure(customError))
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 self.isLoadingMoreData = false
